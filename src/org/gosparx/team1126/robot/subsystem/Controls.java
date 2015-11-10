@@ -14,14 +14,8 @@ public class Controls extends GenericSubsystem implements JoystickListener{
 	private Drives drives;
 
 	//********************************************************************
-	//*******************Driver Controller Mapping**********************
+	//*******************Driver Controller Mapping************************
 	//********************************************************************
-	private static final int ATTACK3_Y_AXIS = 1;
-	private static final int ATTACK3_X_AXIS = 0;
-	private static final int ATTACK3_Z_AXIS = 2;
-	private static final int ATTACK3_TRIGGER = 1;
-	private static final int ATTACK3_TOP_BUTTON = 2;
-
 	private static final int NEW_JOY_Y_AXIS = 1;
 	private static final int NEW_JOY_X_AXIS = 0;
 	private static final int NEW_JOY_TRIGGER = 1;//TRIGGEr
