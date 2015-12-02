@@ -1,8 +1,8 @@
-package org.gosparx.team1126.robot.util;
+package org.gosparx.util;
 
 import java.util.ArrayList;
 
-import org.gosparx.team1126.robot.subsystem.GenericSubsystem;
+import org.gosparx.subsystem.GenericSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 

@@ -1,4 +1,4 @@
-package org.gosparx.team1126.robot.util;
+package org.gosparx.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,8 +6,9 @@ import java.util.Calendar;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import org.gosparx.team1126.robot.subsystem.GenericSubsystem;
+import org.gosparx.subsystem.GenericSubsystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 /**
@@ -74,6 +75,7 @@ public class LogWriter extends GenericSubsystem{
 	protected boolean init() {
 		try {
 			Calendar cal = Calendar.getInstance();
+			DriverStation dr = DriverStation.getInstance();
 			logName = "log" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE) + "-" + cal.get(Calendar.YEAR) + "(" + cal.get(Calendar.HOUR_OF_DAY) + "-" + cal.get(Calendar.MINUTE) + ") " + (ds.isFMSAttached() ? (ds.getAlliance() == Alliance.Red ? "Red" : "Blue") : "Practice") + ".txt";
 			file = new File(FILE_PATH + logName);
 			file.mkdirs();
@@ -151,6 +153,7 @@ public class LogWriter extends GenericSubsystem{
 
 	@Override
 	protected void liveWindow() {
+		// TODO Auto-generated method stub
 
 	}
 }

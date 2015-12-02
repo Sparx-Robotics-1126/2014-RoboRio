@@ -1,4 +1,4 @@
-package org.gosparx.team1126.robot.util;
+package org.gosparx.util;
 
 import java.text.DecimalFormat;
 

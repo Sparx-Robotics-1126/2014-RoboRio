@@ -1,8 +1,8 @@
-package org.gosparx.team1126.robot.subsystem;
+package org.gosparx.subsystem;
 
 import java.security.InvalidParameterException;
 
-import org.gosparx.team1126.robot.util.Logger;
+import org.gosparx.util.Logger;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -27,12 +27,7 @@ public abstract class GenericSubsystem extends Thread {
 	 * An instance of driverstation
 	 */
 	protected DriverStation ds;
-	
-	/**
-	 * Stores if the subsystem is working.
-	 */
-	private boolean isWorking = true;
-	
+
 	/**
 	 * This constructs a new subsystem with the given name and priority.
 	 * 
@@ -90,7 +85,8 @@ public abstract class GenericSubsystem extends Thread {
 	 * Logs all info appropriate to the subsystem.
 	 */
 	abstract protected void writeLog();
-	
+
+	public boolean isWorking = true;
 	/**
 	 * Is the subsystem Working?
 	 */
@@ -133,18 +129,9 @@ public abstract class GenericSubsystem extends Thread {
 			}else{
 				retVal = false;
 			}
-			isWorking = retVal;
 		}while(!retVal);
 		if(LOG != null)
 			LOG.logMessage("Completing thread: " + getName());
-	}
-	
-	/**
-	 * Logs the desired message
-	 * @param message - The message to log
-	 */
-	protected void log(String message){
-		LOG.logMessage(message);
 	}
 
 	/**

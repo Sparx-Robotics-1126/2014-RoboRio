@@ -1,4 +1,4 @@
-package org.gosparx.team1126.robot.sensors;
+package org.gosparx.sensors;
 
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
@@ -27,7 +27,6 @@ public class EncoderData {
      */
     public EncoderData(Encoder controlled, double distPerTick){
         this.controlled = controlled;
-        controlled.setDistancePerPulse(distPerTick);
         this.distPerTick = distPerTick;
         lastTime = Utility.getFPGATime();
         USE_COUNTER = false;
