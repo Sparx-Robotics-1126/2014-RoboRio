@@ -410,10 +410,10 @@ public class Controls extends GenericSubsystem {
             opStart = opJoy.getRawButton(XBOX_START);
             opSelect = opJoy.getRawButton(XBOX_BACK);
             opL1 = opJoy.getRawButton(XBOX_L1);
-            opL2 = /*opJoy.getRawAxis(XBOX_L2) > .5 ? true :*/ false;
+            opL2 = opJoy.getRawAxis(XBOX_L2) > .9 ? true : false;
             opL3 = opJoy.getRawButton(XBOX_L3);
             opR1 = opJoy.getRawButton(XBOX_R1);
-            opR2 = /*opJoy.getRawAxis(XBOX_R2) > .5 ? true :*/ false; 
+            opR2 = opJoy.getRawAxis(XBOX_R2) > .9 ? true : false; 
             opR3 = opJoy.getRawButton(XBOX_R3);
             driverLeftXAxis = leftJoy.getRawAxis(NEW_JOY_X_AXIS);
             driverLeftYAxis = leftJoy.getRawAxis(NEW_JOY_Y_AXIS);
