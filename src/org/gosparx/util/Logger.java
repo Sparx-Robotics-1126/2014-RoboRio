@@ -2,6 +2,8 @@ package org.gosparx.util;
 
 import java.text.DecimalFormat;
 
+import org.gosparx.util.LogWriter;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 

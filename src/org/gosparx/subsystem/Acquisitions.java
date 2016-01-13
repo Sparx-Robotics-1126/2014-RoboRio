@@ -121,14 +121,14 @@ public class Acquisitions extends GenericSubsystem{
      * Extended = NO interference;
      * Retracted = interference;
      */
-    private final static boolean ACQ_SHORT_PNU_EXTENDED = true;//TODO: CHECK
+    private final static boolean ACQ_SHORT_PNU_EXTENDED = false;//TODO: CHECK
     
     /**
      * The extended state of the long cylinder used to move the rollers into acquiring position.
      * Extended = Able to pick up ball
      * Retracted = In the shooter perimeter (can't pick up balls)
      */
-    private final static boolean ACQ_LONG_PNU_EXTENDED = true;//TODO: CHECK
+    private final static boolean ACQ_LONG_PNU_EXTENDED = false;//TODO: CHECK
     
     /**
      * The position in which the tension solenoid has to be in to make a short shot 
@@ -384,21 +384,19 @@ public class Acquisitions extends GenericSubsystem{
     public boolean init() {
         rotatingMotorPWM = new Talon(IO.PWM_PIVOT);
         acqRollerPWM = new Talon(IO.PWM_ACQ);
-        tiltBrake = new Solenoid(IO.DEFAULT_SLOT, IO.PNU_BRAKE);
-        acqLongPnu = new Solenoid(IO.DEFAULT_SLOT, IO.ACQ_TOGGLE_CHAN);
-        acqShortPnu = new Solenoid(IO.DEFAULT_SLOT, IO.KEEP_IN_FRAME_CHAN);
+        tiltBrake = new Solenoid(IO.PNU_BRAKE);
+        acqLongPnu = new Solenoid(IO.ACQ_TOGGLE_CHAN);
+        acqShortPnu = new Solenoid(IO.KEEP_IN_FRAME_CHAN);
         ballDetector = new DigitalInput(IO.ACQ_BALL_DETECTOR);
         upperLimit = new DigitalInput(IO.SHOOTER_SAFE_MODE_CHAN);
         lowerLimit = new DigitalInput(IO.SHOOTER_ACQ_MODE_CHAN);
         rotateEncoder = new Encoder(IO.PIVOT_ENCODER_CHAN_1, IO.PIVOT_ENCODER_CHAN_2, false);
         rotateEncoder.setDistancePerPulse(DEGREES_PER_TICK);
         rotateEncoderData = new EncoderData(rotateEncoder, DEGREES_PER_TICK);
-        ballDetectorPower =  new Solenoid(IO.ALTERNATE_SLOT, IO.BALL_SENSOR_POWER);//MAKES BALL SESNOR TURN ON
         
         acqShortPnu.set(ACQ_SHORT_PNU_EXTENDED);//Puts the rollers out of way of the shooter
         setMode(AcqState.SAFE_STATE);
         rotateEncoderData.reset(); 
-        ballDetectorPower.set(true);
         return true;
     }
 

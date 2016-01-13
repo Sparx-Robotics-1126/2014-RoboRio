@@ -181,7 +181,7 @@ public class Shooter extends GenericSubsystem{
     public boolean init() {
         rightWinchMotor = new Talon(IO.PWM_RIGHT_WINCH);
         latchSwitch = new DigitalInput(IO.LATCH_LIMIT_SWITCH_CHAN);
-        latch = new Solenoid(IO.DEFAULT_SLOT, IO.LATCH_CHAN);
+        latch = new Solenoid(IO.LATCH_CHAN);
         latch.set(LATCH_ENGAGED);
         shooterState = State.STANDBY;
         winchPot = new AnalogPotentiometer(IO.WINCH_POT_CHAN);

@@ -60,7 +60,7 @@ public class Controls extends GenericSubsystem {
     /**
      * An instance of Drives
      */
-    private Drives drives;
+    private Drives_New drives;
 
     /**
      * Stores if we are overriding auto shifting
@@ -332,6 +332,13 @@ public class Controls extends GenericSubsystem {
     private static final int DPAD_LEFT = 90;
     private static final int DPAD_RIGHT = 270;
     
+    private static final int NEW_JOY_Y_AXIS = 1;
+	private static final int NEW_JOY_X_AXIS = 0;
+	private static final int NEW_JOY_TRIGGER = 1;//TRIGGEr
+	private static final int NEW_JOY_LEFT = 2;//LEFT
+	private static final int NEW_JOY_RIGHT = 3;//RIGHT
+	private static final int NEW_JOY_MIDDLE = 4;
+    
     
     
 
@@ -363,7 +370,7 @@ public class Controls extends GenericSubsystem {
         leftJoy = new Joystick(IO.LEFT_DRIVER_JOY_PORT);
         rightJoy = new Joystick(IO.RIGHT_DRIVER_JOY_PORT);
         opJoy = new Joystick(IO.OPER_JOY_PORT);
-        drives = Drives.getInstance();
+        drives = Drives_New.getInstance();
         acq = Acquisitions.getInstance();
         shooter = Shooter.getInstance();
         return true;
@@ -403,21 +410,17 @@ public class Controls extends GenericSubsystem {
             opStart = opJoy.getRawButton(XBOX_START);
             opSelect = opJoy.getRawButton(XBOX_BACK);
             opL1 = opJoy.getRawButton(XBOX_L1);
-            opL2 = opJoy.getRawAxis(XBOX_L2) > .5 ? true : false;
+            opL2 = /*opJoy.getRawAxis(XBOX_L2) > .5 ? true :*/ false;
             opL3 = opJoy.getRawButton(XBOX_L3);
             opR1 = opJoy.getRawButton(XBOX_R1);
-            opR2 = opJoy.getRawAxis(XBOX_R2) > .5 ? true : false; 
+            opR2 = /*opJoy.getRawAxis(XBOX_R2) > .5 ? true :*/ false; 
             opR3 = opJoy.getRawButton(XBOX_R3);
-            driverLeftXAxis = leftJoy.getRawAxis(ATTACK3_X_AXIS);
-            driverLeftYAxis = leftJoy.getRawAxis(ATTACK3_Y_AXIS);
-            driverLeftZAxis = leftJoy.getRawAxis(ATTACK3_Z_AXIS);
-            driverLeftTopButton = leftJoy.getRawButton(ATTACK3_TOP_BUTTON);
-            driverLeftTrigger = leftJoy.getRawButton(ATTACK3_TRIGGER);
-            driverRightXAxis = rightJoy.getRawAxis(ATTACK3_X_AXIS);
-            driverRightYAxis = rightJoy.getRawAxis(ATTACK3_Y_AXIS);
-            driverRightZAxis = rightJoy.getRawAxis(ATTACK3_Z_AXIS);
-            driverRightTopButton = rightJoy.getRawButton(ATTACK3_TOP_BUTTON);
-            driverRightTrigger = rightJoy.getRawButton(ATTACK3_TRIGGER);
+            driverLeftXAxis = leftJoy.getRawAxis(NEW_JOY_X_AXIS);
+            driverLeftYAxis = leftJoy.getRawAxis(NEW_JOY_Y_AXIS);
+            driverLeftTrigger = leftJoy.getRawButton(NEW_JOY_TRIGGER);
+            driverRightXAxis = rightJoy.getRawAxis(NEW_JOY_X_AXIS);
+            driverRightYAxis = rightJoy.getRawAxis(NEW_JOY_Y_AXIS);
+            driverRightTrigger = rightJoy.getRawButton(NEW_JOY_TRIGGER);
 
             /*/****************DRIVER********************* /*/
             if (Math.abs(driverLeftYAxis) < JOYSTICK_DEADZONE) {
@@ -426,24 +429,11 @@ public class Controls extends GenericSubsystem {
             if (Math.abs(driverRightYAxis) < JOYSTICK_DEADZONE) {
                 driverRightYAxis = 0;
             }
-
-            drives.forceLowGear((driverRightTrigger));
-            if (driverRightTopButton) {
-                drives.startHoldPos();
-            } else {
-                drives.stopHoldPos();
-            }
             leftSpeedToSet = getSpeed(driverLeftYAxis, lastLeftJoyYValue);
-            rightSpeedToSet = getSpeed(driverRightYAxis, lastRightJoyYValue);
+            rightSpeedToSet = getSpeed(-driverRightYAxis, -lastRightJoyYValue);
             drives.setSpeed(leftSpeedToSet, rightSpeedToSet);
-            if (driverLeftTrigger && driverLeftTopButton && !lastDriverLeftTopButton && !lastDriverLeftTrigger) {
-                shiftingOverride = !shiftingOverride;
-            } else if (driverLeftTopButton && !driverLeftTrigger && !lastDriverLeftTopButton) {
-                drives.manualShiftUp();
-            } else if (driverLeftTrigger && !driverLeftTopButton && !lastDriverLeftTrigger) {
-                drives.manualShiftDown();
-            }
-            drives.setManualShifting(shiftingOverride);
+            LOG.logMessage("LEFT: " + leftSpeedToSet + " RIGHT: " + rightSpeedToSet);
+       
             /*/********************OPERATOR****************** /*/
             if (opCircle && !lastOPCircle) {
                 acq.setMode(Acquisitions.AcqState.ACQUIRING);
