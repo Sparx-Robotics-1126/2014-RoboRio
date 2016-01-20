@@ -1,5 +1,6 @@
 package org.gosparx;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -28,6 +29,7 @@ public class EntryPoint extends SampleRobot {
 	private GenericSubsystem[] subsystems;
 	private Logger logger;
 	private Compressor compressor;
+	private CameraServer serv;
 
 	/**
 	 * Robot-wide initialization code should go here. Users should override this 
@@ -50,6 +52,9 @@ public class EntryPoint extends SampleRobot {
 			subsystems[i][0].start();
 		}
 		logger.logMessage("Robot init ended");
+		serv = CameraServer.getInstance();
+		serv.setQuality(100);
+		serv.startAutomaticCapture("cam0");
 	}
 
 	/**
