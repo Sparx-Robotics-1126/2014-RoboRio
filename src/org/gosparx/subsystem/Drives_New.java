@@ -62,7 +62,7 @@ public class Drives_New extends GenericSubsystem{
 	}
 	
 	public void setSpeed(double left, double right){
-		wantedLeft = left;
+		wantedLeft = -left;
 		wantedRight = right;
 	}
 
