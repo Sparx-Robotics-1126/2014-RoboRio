@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.gosparx.subsystem.Acquisitions;
-import org.gosparx.subsystem.Controls;
 import org.gosparx.subsystem.Controls_New;
 import org.gosparx.subsystem.Drives_New;
 import org.gosparx.subsystem.GenericSubsystem;
@@ -42,7 +41,7 @@ public class EntryPoint extends SampleRobot {
 		GenericSubsystem subsystems[][]= {
 				{LogWriter.getInstance()},
 				{Drives_New.getInstance()},
-				{Controls.getInstance()},
+				{Controls_New.getInstance()},
 				{Acquisitions.getInstance()},
 				{Shooter.getInstance()},
 		};
