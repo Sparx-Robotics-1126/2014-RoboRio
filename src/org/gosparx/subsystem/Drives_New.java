@@ -2,6 +2,7 @@ package org.gosparx.subsystem;
 
 import org.gosparx.IO;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Drives_New extends GenericSubsystem{
@@ -13,6 +14,9 @@ public class Drives_New extends GenericSubsystem{
 	private double wantedLeft;
 	private double wantedRight;
 	private static Drives_New drives_new;
+	
+	private Solenoid shifter;
+	private boolean inHighGear;
 	
 	public static Drives_New getInstance(){
 		if(drives_new == null){
@@ -31,6 +35,11 @@ public class Drives_New extends GenericSubsystem{
 		leftRear = new Talon(IO.LEFT_REAR_DRIVES_PWM);
 		rightFront = new Talon(IO.RIGHT_FRONT_DRIVES_PWM);
 		rightRear = new Talon(IO.RIGHT_REAR_DRIVES_PWM);
+		
+		shifter = new Solenoid(1, 1);
+		inHighGear = false;
+		shifter.set(inHighGear);
+		
 		return true;
 	}
 
@@ -46,6 +55,11 @@ public class Drives_New extends GenericSubsystem{
 		leftRear.set(wantedLeft);
 		rightFront.set(wantedRight);
 		rightRear.set(wantedRight);
+		
+		if (shifter.get() != inHighGear)
+		{
+			shifter.set(inHighGear);
+		}
 		return false;
 	}
 
@@ -65,5 +79,9 @@ public class Drives_New extends GenericSubsystem{
 		wantedLeft = -left;
 		wantedRight = right;
 	}
-
+	
+	public void toggleShifter()
+	{
+		inHighGear = !inHighGear;
+	}
 }
