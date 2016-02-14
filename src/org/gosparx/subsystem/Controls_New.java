@@ -5,7 +5,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gosparx.IO;
+import org.gosparx.util.ContourTracker;
 import org.gosparx.util.Logger;
+import org.opencv.core.Scalar;
 
 /**
  * @author Alex
@@ -13,6 +15,7 @@ import org.gosparx.util.Logger;
  */
 public class Controls_New extends GenericSubsystem {
 
+	ContourTracker tracker;
 	/**
 	 * The amount in degrees to trim the shooter every time the trim buttons are
 	 * hit.
@@ -335,7 +338,7 @@ public class Controls_New extends GenericSubsystem {
 	
 	private static final int NEW_JOY_Y_AXIS = 1;
 	private static final int NEW_JOY_X_AXIS = 0;
-	private static final int NEW_JOY_TRIGGER = 1;//TRIGGEr
+	private static final int NEW_JOY_TRIGGER = 1;//TRIGGER
 	private static final int NEW_JOY_LEFT = 2;//LEFT
 	private static final int NEW_JOY_RIGHT = 3;//RIGHT
 	private static final int NEW_JOY_MIDDLE = 4;
@@ -376,6 +379,12 @@ public class Controls_New extends GenericSubsystem {
 		acq = Acquisitions.getInstance();
 		shooter = Shooter.getInstance();
 		
+		System.setProperty("java.library.path", "x86");
+    	System.out.println("!!!!!!!763456!!!!!!!!!");
+    	tracker = new ContourTracker(80, 255, new Scalar(0,255,0), new Scalar(0,255,0), 8000);
+    	System.out.println("!!!!!!!1!!!!!!!!!" + tracker.addCamera(0));
+    	tracker.setActiveCamera(0);
+		
 		
 		return true;
 	}
@@ -397,7 +406,7 @@ public class Controls_New extends GenericSubsystem {
 				shiftButtonPressed = curButton;
 				drives.toggleShifter();
 			}
-			
+			tracker.findBoundingBoxes();
 		}
 		return false;
 	}

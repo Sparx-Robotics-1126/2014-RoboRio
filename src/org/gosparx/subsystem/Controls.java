@@ -383,6 +383,8 @@ public class Controls extends GenericSubsystem {
      */
     public boolean execute() {
         if (ds.isEnabled() && ds.isOperatorControl()) {
+        	
+            /*/*******READ VALUES FROM DRIVER STATION********** /*/
             lastOPSelect = opSelect;
             lastOPR1 = opR1;
             lastOPR3 = opR3;
