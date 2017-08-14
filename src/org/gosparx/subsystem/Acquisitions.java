@@ -342,7 +342,7 @@ public class Acquisitions extends GenericSubsystem{
      */
     private boolean shortShot;
     
-    private double startCorrectTime = 0 ;//TODO just get rid of
+    private double startCorrectTime = 0 ;
     
     private double lastCorrectionTime = 0;
     
