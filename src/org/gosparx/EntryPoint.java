@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.gosparx.subsystem.Acquisitions;
 import org.gosparx.subsystem.Controls_New;
+import org.gosparx.subsystem.Controls;
 import org.gosparx.subsystem.Drives_New;
 import org.gosparx.subsystem.GenericSubsystem;
 import org.gosparx.subsystem.Shooter;
@@ -41,7 +42,7 @@ public class EntryPoint extends SampleRobot {
 		GenericSubsystem subsystems[][]= {
 				{LogWriter.getInstance()},
 				{Drives_New.getInstance()},
-				{Controls_New.getInstance()},
+				{Controls.getInstance()},
 				{Acquisitions.getInstance()},
 				{Shooter.getInstance()},
 		};
@@ -52,8 +53,7 @@ public class EntryPoint extends SampleRobot {
 		}
 		logger.logMessage("Robot init ended");
 		serv = CameraServer.getInstance();
-		serv.setQuality(100);
-		serv.startAutomaticCapture("cam0");
+	
 	}
 
 	/**

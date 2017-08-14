@@ -2,7 +2,7 @@ package org.gosparx.subsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Joystick.RumbleType;
+//import edu.wpi.first.wpilibj.Joystick.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gosparx.IO;
 import org.gosparx.util.Logger;
@@ -388,8 +388,8 @@ public class Controls_New extends GenericSubsystem {
 	public boolean execute() {
 		if (ds.isEnabled() && ds.isOperatorControl()) {
 			drives.setSpeed(opJoy.getRawAxis(1), opJoy.getRawAxis(5));
-			opJoy.setRumble(RumbleType.kLeftRumble, Math.abs((float)opJoy.getRawAxis(1)));
-			opJoy.setRumble(RumbleType.kRightRumble, Math.abs((float)opJoy.getRawAxis(5)));
+//			opJoy.setRumble(RumbleType.kLeftRumble, Math.abs((float)opJoy.getRawAxis(1)));
+//			opJoy.setRumble(RumbleType.kRightRumble, Math.abs((float)opJoy.getRawAxis(5)));
 			
 			boolean curButton = opJoy.getRawButton(1);
 			if (curButton != shiftButtonPressed)

@@ -436,7 +436,7 @@ public class Controls extends GenericSubsystem {
        
             /*/********************OPERATOR****************** /*/
             if (opCircle && !lastOPCircle) {
-                acq.setMode(Acquisitions.AcqState.ACQUIRING);
+            	acq.setMode(Acquisitions.AcqState.ACQUIRING);
             } else if (opCross && !lastOPCross) {
                 acq.setMode(Acquisitions.AcqState.OFF_STATE);
             } else if (opTriangle && !lastOPTriangle) {

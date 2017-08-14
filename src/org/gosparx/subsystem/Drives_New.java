@@ -51,15 +51,15 @@ public class Drives_New extends GenericSubsystem{
 
 	@Override
 	protected boolean execute() {
-		leftFront.set(wantedLeft);
-		leftRear.set(wantedLeft);
+		leftFront.set(-wantedLeft);
+		leftRear.set(-wantedLeft);
 		rightFront.set(wantedRight);
 		rightRear.set(wantedRight);
 		
-		if (shifter.get() != inHighGear)
-		{
-			shifter.set(inHighGear);
-		}
+	//	if (shifter.get() != inHighGear)
+	//	{
+	//		shifter.set(inHighGear);
+	//	}
 		return false;
 	}
 
